@@ -1,23 +1,52 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Banner from './components/Banner';
+import Formulario from './components/Formulario';
+import Funcoes from './components/Funcoes';
+import Footer from './components/Footer';
 
 function App() {
+
+  const funcoes = [
+    {
+      nome: 'Duelista',
+      corPrimaria: '#FDE7E8',
+      corSecundaria: '#E06B69'
+    },
+    {
+      nome: 'Controlador',
+      corPrimaria: '#FFEEDF',
+      corSecundaria: '#FF8A29'
+    },
+    {
+      nome: 'Iniciador',
+      corPrimaria: '#E8F8FF',
+      corSecundaria: '#82CFFA'
+    },
+    {
+      nome: 'Sentinela',
+      corPrimaria: '#D9F7E9',
+      corSecundaria: '#57C278'
+    }
+  ];
+
+  const [jogadores, setJogadores] = useState([]);
+
+  const aoNovoJogadorAdicionado = (jogador) => {
+    setJogadores([...jogadores, jogador]);
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App"> 
+      <Banner />
+      <Formulario funcoes={funcoes.map(funcao => funcao.nome)} aoJogadorCadastrado={jogador => aoNovoJogadorAdicionado(jogador)}/>
+      {funcoes.map(funcao => <Funcoes 
+        key={funcao.nome} 
+        nome={funcao.nome} 
+        corPrimaria={funcao.corPrimaria} 
+        corSecundaria={funcao.corSecundaria} 
+        jogadores={jogadores.filter(jogador => jogador.funcao === funcao.nome)}
+      />)}
+      <Footer />
+
     </div>
   );
 }
