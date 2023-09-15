@@ -8,7 +8,7 @@ const Funcoes = (props) => {
         (props.jogadores.length > 0) && <section className="funcoes" style={ BkgColor }>
             <h3 style={{ borderColor: props.corSecundaria }}>{props.nome}</h3>
             <div className='jogadores'>
-                {props.jogadores.map( jogador => <Jogador corDeFundo={props.corSecundaria} key={jogador.nome} nome={jogador.nome} funcao={jogador.funcao} imagem={jogador.imagem} />)}
+                {props.jogadores.map( jogador => <Jogador corDeFundo={props.corSecundaria} key={jogador.nome} nome={jogador.nome} agente={jogador.agente} imagem={jogador.imagem} />)}
             </div>
         </section>
     )
