@@ -31,20 +31,26 @@ function App() {
 
   const [jogadores, setJogadores] = useState([]);
 
+  const deletarJogador = () => {
+    console.log('Deletando Jogador');
+  }
+
   const aoNovoJogadorAdicionado = (jogador) => {
     setJogadores([...jogadores, jogador]);
   }
   return (
-    <div className="App"> 
+    <div className="App">
       <Banner />
-      <Formulario funcoes={funcoes.map(funcao => funcao.nome)} aoJogadorCadastrado={jogador => aoNovoJogadorAdicionado(jogador)}/>
-      {funcoes.map(funcao => <Funcoes 
-        key={funcao.nome} 
-        nome={funcao.nome} 
-        corPrimaria={funcao.corPrimaria} 
-        corSecundaria={funcao.corSecundaria} 
+      <Formulario funcoes={funcoes.map(funcao => funcao.nome)} aoJogadorCadastrado={jogador => aoNovoJogadorAdicionado(jogador)} />
+      {funcoes.map(funcao => <Funcoes
+        key={funcao.nome}
+        nome={funcao.nome}
+        corPrimaria={funcao.corPrimaria}
+        corSecundaria={funcao.corSecundaria}
         jogadores={jogadores.filter(jogador => jogador.funcao === funcao.nome)}
-      />)}
+        aoDeletar={deletarJogador}
+      />
+      )}
       <Footer />
 
     </div>

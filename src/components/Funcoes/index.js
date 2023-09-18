@@ -1,14 +1,21 @@
 import Jogador from '../Jogador';
 import './Funcoes.css';
 
-const Funcoes = (props) => {
-    const BkgColor = { backgroundColor: props.corPrimaria }
-
+const Funcoes = ({ jogadores, corSecundaria, nome, corPrimaria, aoDeletar }) => {
     return (
-        (props.jogadores.length > 0) && <section className="funcoes" style={ BkgColor }>
-            <h3 style={{ borderColor: props.corSecundaria }}>{props.nome}</h3>
+        (jogadores.length > 0) && <section className="funcoes" style={{backgroundColor: corPrimaria}}>
+            <h3 style={{ borderColor: corSecundaria }}>{nome}</h3>
             <div className='jogadores'>
-                {props.jogadores.map( jogador => <Jogador corDeFundo={props.corSecundaria} key={jogador.nome} nome={jogador.nome} agente={jogador.agente} imagem={jogador.imagem} />)}
+                {jogadores.map((jogador, indice) => {                 
+                    return <Jogador 
+                    corDeFundo={corSecundaria} 
+                    key={indice} 
+                    nome={jogador.nome} 
+                    agente={jogador.agente} 
+                    imagem={jogador.imagem} 
+                    aoDeletar={aoDeletar} 
+                    />
+                })}
             </div>
         </section>
     )
